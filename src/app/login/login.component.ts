@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PasswordEncryptionService } from 'src/app/password-encryption.service';  // Ajusta la ruta según tu estructura de archivos
 
 @Component({
   selector: 'app-login',
@@ -9,19 +10,23 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   username: string = '';
   password: string = '';
+  loginError: boolean = false;
 
+  constructor(
+    private router: Router,
+    private passwordEncryptionService: PasswordEncryptionService
+  ) {}
 
-  constructor(private router: Router) {}
+  async onSubmit() {
+    const hashedPassword = await this.passwordEncryptionService.encryptPassword(this.password);
 
-  onSubmit(){
-    if (this.username==='martin' && this.password==='123'){
-      this.router.navigate(['/todo'])
-    }else{
-      this.router.navigate([''])
+    if (this.username === 'martin' && await this.passwordEncryptionService.comparePassword('123', hashedPassword)) {
+      this.router.navigate(['/todo-list']);
+    } else {
+      this.loginError = true;
     }
   }
 
   ngOnInit(): void {
   }
-
 }

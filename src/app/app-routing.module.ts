@@ -8,7 +8,7 @@ import { TodolistComponent } from './todolist/todolist.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: '/todo-list', component: TodolistComponent}
+  {path: 'todo-list', component: TodolistComponent}
 ]
 
 
