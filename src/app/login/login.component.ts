@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { PasswordEncryptionService } from 'src/app/password-encryption.service';  // Ajusta la ruta según tu estructura de archivos
 import { User } from '../user.interface';
 import { USERS } from '../mock-users';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private passwordEncryptionService: PasswordEncryptionService
+    private passwordEncryptionService: PasswordEncryptionService,
+    private authService: AuthService
   ) {}
 
   async onSubmit() {
@@ -25,6 +27,7 @@ export class LoginComponent implements OnInit {
     const user = USERS.find(u=>u.name===this.username);
 
     if (user && await this.passwordEncryptionService.comparePassword(this.password, user.pass)) {
+      this.authService.login();
       this.router.navigate(['/todo-list']);
     } else {
       this.loginError = true;
@@ -32,5 +35,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this,this.authService.isAuthenticatedUser()) {
+      this.router.navigate(['/todo-list']);
+    }
   }
 }

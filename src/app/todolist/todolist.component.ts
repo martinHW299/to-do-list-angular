@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-todolist',
@@ -9,7 +12,10 @@ import { NgForm } from '@angular/forms';
 export class TodolistComponent implements OnInit {
   taskArray = [{ taskName: 'Brush teeth', isCompleted: false }];
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -35,6 +41,11 @@ export class TodolistComponent implements OnInit {
     console.log(this.taskArray);
 
     this.taskArray[index].isCompleted = !this.taskArray[index].isCompleted;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate([''])
   }
 
 }

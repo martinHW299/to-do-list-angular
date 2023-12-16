@@ -4,11 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { TodolistComponent } from './todolist/todolist.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'todo-list', component: TodolistComponent}
+  {path: 'todo-list', component: TodolistComponent, canActivate: [AuthGuard]}
 ]
 
 

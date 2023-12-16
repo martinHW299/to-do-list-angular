@@ -1,6 +1,7 @@
 <div class="container">
 
     <h1>To-Do Application</h1>
+    <button class="btn btn-primary" (click)="logout()">Logout</button>
 
     <hr>
     <form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm">
@@ -33,4 +34,5 @@
 
         </tbody>
     </table>
+    <button class="btn btn-primary" (click)="logout()">Logout</button>
 </div>
