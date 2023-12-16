@@ -1,24 +1,47 @@
-<div class="container mt-5">
-    <div class="card">
-        <div class="card-header">
-            <h3>Login</h3>
-        </div>
-        <div class="card-body">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <!--
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        -->
+        <title>login</title>
+    </head>
+    <body class="bg-light d-flex justify-content-center align-items-center vh-100">
+        <div class="bg-white p-5 rounded-5 text-secondary shadow" style="width: 25rem">
+            <div class="d-flex justify-content-center">
+                <img
+                src="../../assets/login-icon.svg"
+                alt="login-icon"
+                style="height: 7rem"
+                />
+            </div>
+            <div class="text-center fs-1 fw-bold">Login</div>
             <form (submit)="onSubmit()">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username:</label>
-                    <input type="text" id="username" [(ngModel)]="username" name="username" class="form-control" required>
+                <div class="input-group mt-4">
+                    <div class="input-group-text bg-warning">
+                        <img
+                            src="../../assets/username-icon.svg"
+                            alt="username-icon"
+                            style="height: 1rem"
+                        />
+                    </div>
+                    <input type="text" id="username" [(ngModel)]="username" name="username" class="form-control bg-light" placeholder="Username" required>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password:</label>
-                    <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control" required>
+                <div class="input-group mt-1">
+                    <div class="input-group-text bg-warning">
+                        <img src="../../assets/password-icon.svg" alt="password-icon" style="height: 1rem"/>
+                    </div>
+                    <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control bg-light" placeholder="Password" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                <button type="submit" class="btn btn-warning text-white w-100 mt-4 fw-semibold shadow-sm">
+                    Login
+                </button>
                 <div *ngIf="loginError" class="alert alert-danger mt-3">
                     Incorrect username or password. Please try again.
                 </div>
-            </form>
+            </form>            
         </div>
-    </div>
-</div>
-  
+    </body>
+</html>
